@@ -134,9 +134,9 @@ class FirekitModel {
     try {
       if (this.id) {
         if (batch) {
-          return batch.set(this.firestoreRef(), this.toObject())
+          return batch.set(this.firestoreRef(), this.toObject(),{merge: true})
         }
-        return this.firestoreRef().set(this.toObject())
+        return this.firestoreRef().set(this.toObject(),{merge: true})
       }
       return firebase.app().firestore().collection(this.collectionPath()).add(this.toObject())
     } catch (e) {
